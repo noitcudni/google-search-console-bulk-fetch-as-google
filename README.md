@@ -8,10 +8,10 @@ Coming soon
 3. Click on **Load unpacked extension . . .** and load the extension.
 
 ## Usage
-1. Create a list of urls to be fetched as googel in a csv file
-First column: path
-Second column: desktop or mobile
-Thrid column: true for `FETCH AND RENDER` and false for `FETCH`
+1. Create a list of urls to be fetched as google in a csv file.
+  * First column: path
+  * Second column: desktop or mobile
+  * Third column: true for `FETCH AND RENDER` and false for `FETCH`
 
 Example:
 ```
