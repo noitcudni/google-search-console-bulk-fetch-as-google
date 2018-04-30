@@ -1,0 +1,22 @@
+{
+  "name" : "WebMaster Tools - Bulk Fetch as Google",
+  "version" : "0.1",
+  "manifest_version": 2,
+  "description": "",
+  "content_scripts" : [
+    {
+      "matches" : ["https://www.google.com/webmasters/tools/googlebot-fetch*"],
+      "js" : ["jquery-3.3.1.min.js", "bulk_url_fetch.js"]
+    }
+
+  ],
+
+  "background": {
+    "scripts": [
+      "bg.js"
+    ]
+  },
+  "permissions": [
+    "https://www.google.com/webmasters/*"
+  ]
+}
