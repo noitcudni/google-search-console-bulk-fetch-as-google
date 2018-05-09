@@ -3,7 +3,7 @@
 Coming soon
 
 ## Installation
-1. Download the extension from and unzip it.
+1. Download the extension from [github](https://github.com/noitcudni/google-webmaster-tools-bulk-fetch-as-google/archive/master.zip) and unzip it.
 2. Go to **chrome://extensions/** and turn on Develper mode.
 3. Click on **Load unpacked extension . . .** and load the extension.
 
