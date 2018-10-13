@@ -1,6 +1,6 @@
 # Google Webmaster Tools Bulk Fetch as Google Extension
 ## Install from Google Webstore
-Coming soon
+https://chrome.google.com/webstore/detail/webmaster-tools-bulk-fetc/plafkhdhopmgfgehjcpdjfomjknjpbal
 
 ## Installation
 1. Download the extension from [github](https://github.com/noitcudni/google-webmaster-tools-bulk-fetch-as-google/archive/master.zip) and unzip it.
