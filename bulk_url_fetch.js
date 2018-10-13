@@ -1,9 +1,19 @@
 $(document).ready(function(){
   // url : device type (DESKTOP vs SMARTPHONE_NEW) | render? (true or false)
-  var $fileInput = $("<input id='fileInput' type='file' />");
+  var buttonCss = {
+    "background-color": "#d14836",
+    "color": "#fff",
+    "padding": "8px",
+    "line-height": "27px",
+  };
+  // var $fileInput = $("<input id='fileInput' type='file' />");
+  var $labelFileInput = $("<label for='fileInput'>Upload Your File</label>");
+  var $fileInput = $("<input style='display:none' id='fileInput' type='file' />");
+  $labelFileInput.css(buttonCss);
   var $container = $("<div id='lih-container'></div>");
 
   $("#wmxbot-action-section").append($container);
+  $container.append($labelFileInput);
   $container.append($fileInput);
 
   var port = chrome.runtime.connect({name: "port"});
@@ -39,10 +49,11 @@ $(document).ready(function(){
   });
 
   $fileInput.change(function(){
+    console.log("onchange fileinput!: ", this.values);
     $.each(this.files, function(i, f) {
       var reader = new FileReader();
       reader.onload = (function(e) {
-        var rawTxt = e.target.result;
+        var rawTxt = e.target.result.replace(/\r/g, "\n");
         console.log("rawTxt: " + rawTxt); //xxx
         port.postMessage({
           'type': 'init',
@@ -63,7 +74,9 @@ $(document).ready(function(){
       });
     } else {
       // pause. captcha shows up
-      var $continueButton = $("<input type='button' value='Continue' />");
+      var $labelContinueButton = $("<label for='continueButton' style='margin-left:10px'>Continue</label>")
+      var $continueButton = $("<input style='display:none' id='continueButton' type='button' value='Continue' />");
+      $labelContinueButton.css(buttonCss);
       $continueButton.click(function() {
         console.log("Deal with capture and then continue"); //xxx
         port.postMessage({
@@ -72,27 +85,9 @@ $(document).ready(function(){
 
       });
 
+      $container.append($labelContinueButton);
       $container.append($continueButton);
     }
   }, 4000);
 
 });
-
-// <form action="/webmasters/tools/wmxbot-fetch-ac?authuser=3" method="POST" name="wmxbot-fetch-form" id="wmxbot-fetch-form"><input type="hidden" name="security_token" value="CUlJLTx2C_Xw2_BHMp5CyUTCvDI:1524989982186"><input type="hidden" name="redirectTarget" value="">
-// <input type="hidden" name="hl" value="en">
-// <input type="hidden" name="siteUrl" value="http://packershack.com/">
-
-// <div class="errorbox-good"></div>
-// <input type="hidden" name="redirectParams" value="">
-// <div id="wmxbot-action-section">
-// <div id="url-container"><div id="url-label">http://packershack.com/</div>
-// <div id="path-input-container"><input type="text" id="path-input" name="path" maxlength="2048" value="" class="urlfield jfk-textinput ">
-// <div id="path-messages" class="subduedtext"><div>Leave URL blank to fetch the homepage.
-// Requests may take a few minutes to process.</div>
-// </div></div></div>
-// <div id="wmxbot-buttons-container"><div id="wmxbot-strategy-dropdown-container" title=""><div id="wmxbot-strategy-dropdown-menu" class="goog-menu goog-menu-noicon hidden"><div class="goog-menuitem" title="DESKTOP">Desktop</div> <div class="goog-menuitem" title="SMARTPHONE_NEW">Mobile: Smartphone</div></div></div>
-// <input type="hidden" id="wmxbot-strategy-hidden-input" name="type">
-// <div id="wmxbot-submit-crawl-button" class="goog-inline-block"></div>
-// <div id="wmxbot-submit-render-button" class="goog-inline-block"></div>
-// <input type="hidden" id="wmxbot-render-enabled-hidden-input" name="render"></div></div></form>
-// security_token=CUlJLTx2C_Xw2_BHMp5CyUTCvDI%3A1524989982186&redirectTarget=&hl=en&siteUrl=http%3A%2F%2Fpackershack.com%2F&redirectParams=&path=results%2Fagra%2Findia&type=DESKTOP&render=false
